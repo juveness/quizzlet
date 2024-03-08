@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title> < TITLE </title>
+    <script src="https://cdn.jsdelivr.net/npm/@json-editor/json-editor@latest/dist/jsoneditor.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  </head>
+  <body>
+    <h1> < TITLE   </h1>
+    <p> < DESCIPTION | : <a href="https://pmk65.github.io/jedemov2/dist/demo.html"> Link help playground</a> </p>
+
+    <div id='editor_holder'></div>
+    <button id='submit'>Submit</button>
+
+    <br/>
+    <h2>Create Output</h2>
+    <div id="output"></div>
+    <h2>Append Output</h2> 
+    <div id="questions_output"></div> 
+    <script>
+      // Initialize the editor with a JSON schema + Options see 
+      var editor = new JSONEditor(document.getElementById('editor_holder'),{
+        disable_array_delete_last_row: true,
+        theme: "html",
+        disable_edit_json :true ,
+        disable_properties:true,
+        schema: {  < SCHEME : https://pmk65.github.io/jedemov2/dist/demo.html }
+      });
+
+      // Hook up the submit button to log to the console
+      document.getElementById('submit').addEventListener('click',function() {
+        // Get the value from the editor
+        // Get the value from the editor
+        var value = editor.getValue();
+        // Display the value as a string in the output div
+        document.getElementById('output').textContent = JSON.stringify(value, null, 2);
+        
+        // Extract and Display only the Questions part
+        var questions = value.Questions ? value.Questions : [];
+        document.getElementById('questions_output').textContent = JSON.stringify(questions, null, 2);
+      });
+    </script>
+
+
+  </body>
+</html>
